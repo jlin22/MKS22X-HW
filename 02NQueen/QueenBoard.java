@@ -1,8 +1,10 @@
 public class QueenBoard{
     private int[][]board;
     private int solutionCount;
+    private boolean run;
     
     public QueenBoard(int size){
+	run = false;
 	board = new int[size][size];
     }
 
@@ -35,12 +37,32 @@ public class QueenBoard{
 	}
 	return false;
     }
-    public int getSolutionCount(){
-	return -1;
+    public void countSolutions(){
+        solutions(0);
     }
-
-    
-	
+    private void solutions(int col){
+	run = true;
+	for (int row = 0; row < board.length; row++){
+		if (addQueen(row,col)){
+		    addQueen(row,col);
+		    if (col == board.length - 1){
+			solutionCount++;
+		    }
+		    else{
+		    solutions(col + 1);
+		    }
+		    removeQueen(row,col);
+		
+	    }
+	}
+	}		    
+	    
+    public int getSolutionCount(){
+	if (run != true){
+	    return -1;
+	}
+	return solutionCount;
+    }	
     private boolean addQueen(int r, int c){
 	if (board[r][c] != 0){
 	    return false;
@@ -105,12 +127,4 @@ public class QueenBoard{
 	}
     	return a;
     }
-    public static void main(String[]a){
-	QueenBoard x = new QueenBoard(6);
-	x.solve();
-	System.out.println(x.toString());
-	System.out.println(x.getSolutionCount());
-	
-    }
-	
 }
