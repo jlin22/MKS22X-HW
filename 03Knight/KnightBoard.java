@@ -1,5 +1,6 @@
 public class KnightBoard{
     private int[][]board;
+    //make a board for used squares
     public KnightBoard(int startingRows, int startingCols){
 	board = new int[startingRows][startingCols];
     }
@@ -24,40 +25,29 @@ public class KnightBoard{
 	}	
 	if (board[row][col] == 0){
 	    board[row][col] = level;
-	    if (board[row + 2][col + 1]==0){
-		return solveH(row+2,col+1,level+1);
+	    if (row + 2 < board.length && col + 1 < board[row].length){
+		return solveH(row + 2, col + 1, level + 1);
 	    }
-	    if (board[row + 2][col - 1]==0){
-		return solveH(row+2,col-1,level+1);
+	    else if (row - 2 > -1 && col + 1 < board[row].length){
+		return solveH(row - 2, col + 1, level + 1);
 	    }
-	    if (board[row - 2][col + 1]==0){
-		return solveH(row-2,col+1,level+1);
+	    else if (row + 2 < board.length && col - 1 > -1){
+		return solveH(row + 2, col - 1, level + 1);
 	    }
-	    if (board[row - 2][col - 1]==0){
-		return solveH(row-2,col-1,level+1);
+	    else if (row - 2 > -1 && col - 1 > -1){
+		return solveH(row - 2, col - 1, level + 1);
 	    }
-	    if (board[row + 1][col + 2]==0){
-		return solveH(row+1,col+2,level+1);
+	    else if (row + 1 < board.length && col + 2 < board.length){
+		return solveH(row + 1, col + 2, level + 1);
 	    }
-	    if (board[row + 1][col - 2]==0){
-		return solveH(row+1,col-2,level+1);
-	    }
-	    if (board[row - 1][col + 2]==0){
-		return solveH(row-1,col+2,level+1);
-	    }
-	    if (board[row - 1][col - 2]==0){
-		return solveH(row-1,col-2,level+1);
-	    }
-	    
 
 	    board[row][col] = 0;
 	}
 	return false;
-    }
+	}
     public static void main(String[]a){
 	KnightBoard x = new KnightBoard(6,6);
 	x.solve();
-	System.out.println(x.solveH(0,0,1));
 	System.out.println(x.toString());
     }
 }
