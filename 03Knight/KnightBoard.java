@@ -26,6 +26,7 @@ public class KnightBoard{
     }
     public boolean solveH(int row, int col, int level){
 	if (board.length * board[row].length == level){
+	    board[0][0] = 1;
 	    return true;
 	}
 	int[] x = {2, 1, -1, -2, -2, -1, 1, 2};
