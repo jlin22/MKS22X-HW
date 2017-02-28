@@ -1,5 +1,8 @@
 import java.util.*;
 import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Maze{
 
@@ -21,31 +24,36 @@ public class Maze{
     */
 
     public Maze(String filename){
-        //COMPLETE CONSTRUCTOR
-	    boolean x,y = false;
-	    ReadFile file = new ReadFile(filename);
-	    String[] lines = file.OpenFile();
-	    for (int i = 0; i < lines.length; i++){
-		for (int c = 0; c < lines[i].length(); c++){
-		    maze[i][c] = lines[i].charAt(c);
-		    if (lines[i].charAt(c) == 'E'){
-			x = true;
-		    }
-		    if (lines[i].charAt(c) == 'S'){
-			y = true;
-		    }
+	try{
+	    File text = new File(filename);
+	    Scanner inf = new Scanner(text);
+	    int l = 0;
+	    int ll = 0;
+	    while(inf.hasNextLine()){
+		l++;
+		String line = inf.nextLine();
+		for (int i = 0; line.charAt(i) == '#'; i++){
+		    ll++;
 		}
 	    }
-	    if (!x || !y){
-		throw new IllegalArgumentException();
-	    }
+	    maze = new char[l][ll];
 	}
-
-
+	catch(Exception e){
+	}
+	
 	    
-		    
-		
-		
+				  
+	
+
+    }
+       private void wait(int millis){ //ADDED SORRY!
+         try {
+             Thread.sleep(millis);
+         }
+         catch (InterruptedException e){
+         }
+     }
+		    				
 
     public void setAnimate(boolean b){
 
