@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Maze{
+    //works on data1-3, but in specific cases, ordering of the if statements makes it an infinite loop
 
 
     private char[][]maze;
