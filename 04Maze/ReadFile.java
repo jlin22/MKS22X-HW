@@ -7,7 +7,7 @@ public class ReadFile {
     public ReadFile(String file){
 	filetext = "";	
 	try{
-	    File text = new File("data1.dat");
+	    File text = new File(file);
 	    Scanner inf = new Scanner(text);
 	    int lineNumber = 0;
 	    while(inf.hasNextLine()){
@@ -39,6 +39,9 @@ public class ReadFile {
 	}
 	return a;
     }
+    public boolean mazeGood(){
+	return filetext.indexOf("E") != -1 && filetext.indexOf("S") != -1;
+    }
   public static void main(String args[]) throws FileNotFoundException {
         //instead of a try/catch, you can throw the FileNotFoundException.
       /* File text = new File("data1.dat");// can be a path"/full/path/to/file.txt" 
@@ -48,9 +51,9 @@ public class ReadFile {
             String line = inf.nextLine();
             System.out.println(line);
       */
-      ReadFile x = new ReadFile("data1.dat");
+      ReadFile x = new ReadFile("data2.dat");
       System.out.println(x.toString());
-      System.out.println(x.getMaze());
+       System.out.println(x.mazeGood());
       
   }       
 }   
