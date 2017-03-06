@@ -119,18 +119,18 @@ public class Maze{
 	    return false;
 	}
 	maze[row][col]='@';
-	if (solve(row,col+1)){
+	if (solve(row+1,col)){
 	    return true;
 	}
-	if (solve(row-1,col)){
+	if (solve(row,col-1)){
 	    return true;
 	}	    	    
 	
-	if (solve(row,col-1)){
+	if (solve(row-1,col)){
 	    return true;
 	}	    
 	
-	if (solve(row+1,col)){
+	if (solve(row,col+1)){
 	    return true;
 	}	    
 	
