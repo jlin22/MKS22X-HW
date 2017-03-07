@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Maze{
+    //works on data1-3, but in specific cases, ordering of the if statements makes it an infinite loop
 
 
     private char[][]maze;
@@ -23,28 +24,25 @@ public class Maze{
 
     */
 
-    public Maze(String filename){
-	try{
-	    File text = new File(filename);
-	    Scanner inf = new Scanner(text);
-	    int l = 0;
-	    int ll = 0;
-	    while(inf.hasNextLine()){
-		l++;
-		String line = inf.nextLine();
-		for (int i = 0; line.charAt(i) == '#'; i++){
-		    ll++;
+      public String toString(){
+	String a = "";
+	for (int c = 0; c < maze.length; c++){
+	    for (int r = 0; r < maze[c].length; r++){
+	        a += maze[c][r];
+		if (r == maze[c].length - 1){
+		    a += "\n";
 		}
 	    }
-	    maze = new char[l][ll];
 	}
-	catch(Exception e){
+	return a;
+    }
+    public Maze(String filename){
+	ReadFile x = new ReadFile(filename);
+	maze = x.getMaze();
+	if (!x.mazeGood()){
+	    throw new Error("Invalid Maze");
 	}
 	
-	    
-				  
-	
-
     }
        private void wait(int millis){ //ADDED SORRY!
          try {
@@ -79,7 +77,14 @@ public class Maze{
             int startr=-1,startc=-1;
 
             //Initialize starting row and startint col with the location of the S. 
-
+	    for (int c = 0; c < maze.length; c++){
+		for (int r = 0 ; r < maze[c].length; r++){
+		    if (maze[c][r] == 'S'){
+			startr = c;
+			startc = r;
+		    }
+		}
+	    }		
             maze[startr][startc] = ' ';//erase the S, and start solving!
             return solve(startr,startc);
     }
@@ -108,7 +113,29 @@ public class Maze{
         }
 
         //COMPLETE SOLVE
-
+	if (maze[row][col] == 'E'){
+	    return true;
+	}
+	if (maze[row][col] == '#' || maze[row][col] == '@'){
+	    return false;
+	}
+	maze[row][col]='@';
+	if (solve(row+1,col)){
+	    return true;
+	}
+	if (solve(row,col-1)){
+	    return true;
+	}	    	    
+	
+	if (solve(row-1,col)){
+	    return true;
+	}	    
+	
+	if (solve(row,col+1)){
+	    return true;
+	}	    
+	
+	maze[row][col]='.';
         return false; //so it compiles
     }
 
