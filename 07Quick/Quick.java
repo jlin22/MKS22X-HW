@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
-public class Partition{
-    public int part(int[]data, int start, int end){
+public class Quick{
+    public static int part(int[]data, int start, int end){
 	int x = (int)(Math.random()*(end - start +1)) + start;
 	int pivot = data[x];
 	int s = start;
@@ -22,8 +22,30 @@ public class Partition{
 	a[s] = pivot;
 	data = a;
 	for (int i = 0; i < a.length; i++){
-	    System.out.println(a[i]);
 	}
 	return s;
     }
+    public static int quickselect(int[]data,int k){
+	int s = 0;
+	int e = data.length - 1;
+	while (e >= s){
+	    int pivot = part(data, s, e);
+
+	    if (k < pivot){
+		e = pivot -1;
+	    }
+	    else if (k > pivot){
+		s = pivot + 1;
+	    }
+	    else{
+		return data[k];
+	    }
+	}
+	return data[k];
+    }
+    public static void main(String[]a){
+	int[]ary = { 2, 10, 15, 23, 0,  5};
+	System.out.println(quickselect(ary,3));
+    }
+
 }
