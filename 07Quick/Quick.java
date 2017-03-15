@@ -26,11 +26,4 @@ public class Partition{
 	}
 	return s;
     }
-    public static void main(String[]arg){
-	Partition p = new Partition();
-	int[] a = {0,2,1,3};
-	System.out.println(p.part(a, 0, 3));
-
-
-    }
 }
