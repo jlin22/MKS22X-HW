@@ -9,7 +9,7 @@ public class Quick{
 	int[] a = new int[data.length];
 	for (int i = 0; i >= start && i <= end; i++){
 	    if (i != x){
-		if (data[i] < pivot){
+		if (data[i] <= pivot){
 		    a[s] = data[i];
 		    s++;
 		}
@@ -28,17 +28,14 @@ public class Quick{
     public static int quickselect(int[]data,int k){
 	int s = 0;
 	int e = data.length - 1;
-	while (e >= s){
-	    int pivot = part(data, s, e);
-
-	    if (k < pivot){
-		e = pivot -1;
+	int x = part(data,s,e);
+	while (x != k){
+	    System.out.println(x);
+	    if (x <= k){
+		s = x - 1;
 	    }
-	    else if (k > pivot){
-		s = pivot + 1;
-	    }
-	    else{
-		return data[k];
+	    if (x > k){
+		e = x + 1;
 	    }
 	}
 	return data[k];
