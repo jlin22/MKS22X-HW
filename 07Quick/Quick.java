@@ -6,43 +6,65 @@ public class Quick{
 	int pivot = data[x];
 	int s = start;
 	int e = end;
-	int[] a = new int[data.length];
-	for (int i = 0; i >= start && i <= end; i++){
-	    if (i != x){
-		if (data[i] <= pivot){
-		    a[s] = data[i];
-		    s++;
-		}
-		if (data[i] > pivot){
-		    a[e] = data[i];
-		    e--;
-		}
+	while (s < e){
+	    while (data[s] < pivot){
+		s++;		
 	    }
-	}
-	a[s] = pivot;
-	data = a;
-	for (int i = 0; i < a.length; i++){
+	    while(data[e] > pivot){
+		e--;
+	    }
+	    if (s < e){
+		swap(data,s,e);
+		s++;
+		e--;
+	    }
 	}
 	return s;
     }
+    public static void swap(int[]ary,int x, int y){
+	int t = ary[x];
+	ary[x] = ary[y];
+	ary[y] = t;
+    }
+	
     public static int quickselect(int[]data,int k){
 	int s = 0;
 	int e = data.length - 1;
-	int x = part(data,s,e);
-	while (x != k){
-	    System.out.println(x);
-	    if (x <= k){
-		s = x - 1;
+	while (s < e){
+	    int p = part(data,s,e);
+	    if (p == k){
+		return data[k];
 	    }
-	    if (x > k){
-		e = x + 1;
+	    else if (p < k){
+		s = p + 1;
 	    }
+	    else{
+		e = p -1;
+	    }
+
 	}
 	return data[k];
     }
+    public static void quickSort(int[]ary){
+	quickSortH(ary,0,ary.length-1);
+    }
+    public static void quickSortH(int[]ary,int s, int e){
+	int p = part(ary,s,e);
+	if (s < p - 1){
+	    quickSortH(ary,s,p -1);
+	}
+	if (p < e){
+	    quickSortH(ary,p,e);
+	}
+    }
     public static void main(String[]a){
-	int[]ary = { 2, 10, 15, 23, 0,  5};
+	int[]ary = {0,99,10,25,16};
+	//System.out.println(part(ary,0,2));
 	System.out.println(quickselect(ary,3));
+	//quickSort(ary);
+	for (int i = 0; i < ary.length; i++){
+	    System.out.print(ary[i]+",");
+	}
     }
 
 }
