@@ -64,7 +64,6 @@ public class USACO{
 	for (int i = 0; i < com.length;i++){
 	    stomp(com[i][0],com[i][1],com[i][2]);
 	}
-	System.out.println(param[2]);
 	for (int r = 0;r<lake.length;r++){
 	    for (int c = 0;c<lake[r].length;c++){
 		if (lake[r][c] < param[2]){
@@ -72,7 +71,6 @@ public class USACO{
 		}
 	    }
 	}
-	System.out.println(d);
 	}catch(FileNotFoundException e){
 	}
 	return d * 72 * 72;
@@ -107,7 +105,6 @@ public class USACO{
 	int ln = 1;
 	while(inf.hasNextLine()){
 	    String line = inf.nextLine();
-	    System.out.println(line);
 	    if (ln == 1){
 		for (int i = 0; i < 3;i++){
 		    if (i < 2){
@@ -179,8 +176,9 @@ public class USACO{
 	}
     }
 	
-    public static void main(String[]args){
+    /*public static void main(String[]args){
 	USACO x = new USACO();
+	System.out.println(x.bronze("test1.txt"));
 	System.out.println(x.silver("test2.txt"));
-    }
+	}*/
 }
