@@ -1,22 +1,23 @@
 import java.util.*;
 import java.io.*;
 public class Quick{
-    public static int part(int[]data, int start, int end){
-	int x = (int)(Math.random()*(end - start +1)) + start;
-	int pivot = data[x];
+    public static int part(int[]ary, int start, int end){
+	//int pivot = ary[(start + end)/2];
+	int pivot = ary[(int)(Math.random()*(end-start+1)+start)];
 	int s = start;
 	int e = end;
 	while (s < e){
-	    while (data[s] < pivot){
+	    while (ary[s] < pivot){
 		s++;		
 	    }
-	    while(data[e] > pivot){
+	    while(ary[e] > pivot){
 		e--;
 	    }
 	    if (s < e){
-		swap(data,s,e);
-		s++;
-		e--;
+		swap(ary,s,e);
+		if (ary[s] == ary[e]){
+		    s++;
+		}
 	    }
 	}
 	return s;
@@ -58,12 +59,13 @@ public class Quick{
 	}
     }
     public static void main(String[]a){
-	int[]ary = {0,99,10,25,16};
-	//System.out.println(part(ary,0,2));
-	System.out.println(quickselect(ary,3));
-	//quickSort(ary);
+	int[]ary = {2,10,15,23,0,5};
+	//System.out.println(part(ary,0,4));
+	//System.out.println(quickselect(ary,4));
+	quickSort(ary);
 	for (int i = 0; i < ary.length; i++){
-	    System.out.print(ary[i]+",");
+	    //System.out.println(quickselect(ary,i));
+	    System.out.print(ary[i]+" ");
 	}
     }
 
