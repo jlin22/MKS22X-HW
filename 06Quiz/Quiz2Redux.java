@@ -16,8 +16,8 @@ public class Quiz2Redux{
 	    help(words,s,init,i+1);
 	}
     }
-    public static void main(String[]a){
+    /* public static void main(String[]a){
 	Quiz2Redux x = new Quiz2Redux();
 	System.out.println(combinations("abc"));
-    }
+	}*/
 }

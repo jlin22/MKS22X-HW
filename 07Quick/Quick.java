@@ -58,15 +58,15 @@ public class Quick{
 	    quickSortH(ary,p,e);
 	}
     }
-    public static void main(String[]a){
-	int[]ary = {2,10,15,23,0,5};
+    // public static void main(String[]a){
+	//int[]ary = {2,10,15,23,0,5};
 	//System.out.println(part(ary,0,4));
 	//System.out.println(quickselect(ary,4));
-	quickSort(ary);
-	for (int i = 0; i < ary.length; i++){
+	//quickSort(ary);
+	//for (int i = 0; i < ary.length; i++){
 	    //System.out.println(quickselect(ary,i));
-	    System.out.print(ary[i]+" ");
-	}
-    }
+	    // System.out.print(ary[i]+" ");
+	//}
+    
 
 }
