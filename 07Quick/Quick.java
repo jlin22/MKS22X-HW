@@ -46,7 +46,7 @@ public class Quick{
 	}
 	return data[k];
     }
-    public static void quickSort(int[]ary){
+    public static void quicksort(int[]ary){
 	quickSortH(ary,0,ary.length-1);
     }
     public static void quickSortH(int[]ary,int s, int e){
