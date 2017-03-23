@@ -48,9 +48,8 @@ public class KnightBoard{
 	}		    		       	
 	return false;
 	}
-    public static void main(String[]a){
-	KnightBoard x = new KnightBoard(4,3);
-	x.solve();
-	System.out.println(x.toString());
-    }
-}
+    //public static void main(String[]a){
+	//KnightBoard x = new KnightBoard(4,3);
+	//x.solve();
+	//System.out.println(x.toString());
+//}
