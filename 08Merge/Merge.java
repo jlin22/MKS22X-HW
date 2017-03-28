@@ -2,16 +2,22 @@ public class Merge{
     //test on randomized min to max, randomized 0-10
     //all same value, sorted, reverse sorted for qsort and msort
     public static void mergesort(int[]ary){
-	int[]left = new int[ary.length/2];
-	for (int x = 0; x < ary.length/2; x++){
-	    left[x] = ary[x];
+	if (ary.length == 1){
+	    return;
 	}
-	int[]right = new int[ary.length-ary.length/2];
-	if (ary.length != 1){
+	else{	    
+	    int[]left = new int[ary.length/2];
+	    for (int x = 0; x < ary.length/2; x++){
+		left[x] = ary[x];
+	    }
+	    int[]right = new int[ary.length-ary.length/2];
+	    for (int y = ary.length/2; y < ary.length;y++){
+		right[y-ary.length/2] = ary[y];
+	    }
 	    mergesort(left);
 	    mergesort(right);
+	    merge(left,right,ary);
 	}
-	merge(left,right,ary);
     }
     public static void merge(int[]a,int[]b, int[] d){
 	int x = 0;
@@ -39,21 +45,21 @@ public class Merge{
 	    }
 	}
     }
-    public static void main(String[]a){
-	/*int[]y = {0,2,5,76,79};
+    /*public static void main(String[]a){
+	int[]y = {0,2,5,76,79};
 	int[]x = {1,5,24,100,779};
 	int[]z = new int[10];
 	merge(x,y,z);
 	for (int i = 0; i < z.length; i++){
 	    System.out.print(z[i] + " ");
-	    }*/
-	int[]b = {6,1,276,125,17,2,56,7,12,6};
+	    }
+	int[]b = {6,1,276,12,1,7126,126,125667,12612,123,1,6,8};
 	mergesort(b);
 	for (int i = 0; i < b.length; i++){
 	    System.out.print(b[i] + " ");
 	}
 	    
-    }
+    }*/
 }
 		      
 			
