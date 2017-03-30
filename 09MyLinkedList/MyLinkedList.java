@@ -6,7 +6,15 @@ public class MyLinkedList{
     }
     public boolean add(int value){
  	size++;
-	start = new LNode(value,start);
+	LNode c = start;
+	if (c == null){
+	    start = new LNode(value,start);
+	    return true;
+	}
+	while (c.next != null){
+	    c = c.next;
+	}
+	c.next = new LNode(value,null);
 	return true;
     }
     public int size(){
