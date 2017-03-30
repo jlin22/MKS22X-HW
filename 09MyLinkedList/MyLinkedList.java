@@ -5,12 +5,42 @@ public class MyLinkedList{
 	size = 0;
     }
     public boolean add(int value){
-	size++;
-	//start = new LNode(value,start);
+ 	size++;
+	start = new LNode(value,start);
 	return true;
     }
     public int size(){
 	return size;
+    }
+    public int get(int i){
+	LNode c = start;
+	while (i != 0){
+	    i--;
+	    c = c.next;
+	}
+	return c.value;
+    }
+    public int set(int i, int v){
+	LNode c = start;
+	while (i != 0){
+	    i--;
+	    c = c.next;
+	}
+	int x = c.value;
+	c.value = v;
+	return x;
+    }
+    public int indexOf(int v){
+	LNode c = start;
+	int i = 0;
+	while (c != null){
+	    if (c.value == v){
+		return i;
+	    }
+	    c = c.next;
+	    i++;
+	}
+	return -1;
     }
     public String toString(){
 	String s = "[";
@@ -34,7 +64,10 @@ public class MyLinkedList{
 	MyLinkedList x = new MyLinkedList();
 	x.add(1);
 	x.add(67);
+	System.out.println(x.set(1,99));
 	System.out.println(x);
+	System.out.println(x.indexOf(99));
+
     }
     
 }
