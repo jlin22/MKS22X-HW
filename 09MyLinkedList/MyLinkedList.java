@@ -1,9 +1,82 @@
+import java.util.*;
 public class MyLinkedList{
-    private LNode start;
+    private LNode head,tail;
     private int size;
     public MyLinkedList(){
 	size = 0;
     }
+    public int size(){
+	return size;
+    }
+    private LNode getNthNode(int n){
+	int i;
+	LNode c;
+	if (n < size / 2){
+	    i = 0;
+	    c = head;
+	    while (i<n){
+		c = c.next;
+		i++;
+	    }
+	}
+	else{
+	    i = size - 1;
+	    c = tail;
+	    while (i > n){
+		c = c.prev;
+		i--;
+	    }
+	}
+	return c;
+    }
+    private void addAfter(LNode location, LNode toBeAdded){
+	if (location == tail){
+	    location.next = toBeAdded;
+	    toBeAdded.prev = location;
+	    }
+	}
+	else{
+	    toBeAdded.prev = location;
+	    toBeAdded.next = location.next;
+	    location.next = toBeAdded;
+	    toBeAdded.next.prev=toBeAdded;
+	}
+    }
+    private void remove(LNode target){
+	if (target.next == null && target.prev == null){
+	    target = null;
+	}
+	if (target == head){
+	    head = target.next;
+	    head.prev = null;
+	}
+	if (target == tail){
+	    tail = target.prev;
+	    tail.next = null;
+	}
+	else{
+	    target.next.prev = target.prev;
+	    target.prev.next = target.next;
+	}
+    }
+    public String toString(){
+	String x = "[";
+	LNode c = head;
+	while (c != null){
+	    x += c;
+	    c = c.next;
+	    if (c != tail){
+		x+= ",";
+	    }
+	}	    
+	return x + "]";
+    }
+    public boolean add(int value){
+	LNode x = new LNode(value);
+	addAfter(tail,x);
+	return true;
+    }
+    /*
     public boolean add(int value){
  	size++;
 	LNode c = start;
@@ -17,9 +90,7 @@ public class MyLinkedList{
 	c.next = new LNode(value,null);
 	return true;
     }
-    public int size(){
-	return size;
-    }
+ 
     public int get(int i){
 	LNode c = start;
 	while (i != 0){
@@ -59,23 +130,27 @@ public class MyLinkedList{
 	}
 	s+= current.value + "]";
 	return s;
-    }
+	}*/
     private class LNode{
-	private int value;
-	private LNode next;
-	private LNode(int v, LNode n){
-	    value = v;
-	    next = n;
+	LNode next,prev;
+	int value;
+	public LNode(int value){
+	    this.value = value;
+	}
+	public String toString(){
+	    return value+"";
 	}
     }
     public static void main(String[]a){
 	MyLinkedList x = new MyLinkedList();
 	x.add(1);
+	System.out.println(x);
+	/*
 	x.add(67);
 	System.out.println(x.set(1,99));
-	System.out.println(x);
-	System.out.println(x.indexOf(99));
 
+	System.out.println(x.indexOf(99));
+	*/
     }
     
 }
