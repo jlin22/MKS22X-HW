@@ -30,16 +30,23 @@ public class MyLinkedList{
 	return c;
     }
     private void addAfter(LNode location, LNode toBeAdded){
-	if (location == tail){
+	if (size == 0){
+	    head = toBeAdded;
+	    tail = toBeAdded;
+	    size++;
+	}
+	else if (location == tail){
 	    location.next = toBeAdded;
 	    toBeAdded.prev = location;
-	    }
+	    tail = toBeAdded;
+	    size++;
 	}
 	else{
 	    toBeAdded.prev = location;
 	    toBeAdded.next = location.next;
 	    location.next = toBeAdded;
 	    toBeAdded.next.prev=toBeAdded;
+	    size++;
 	}
     }
     private void remove(LNode target){
@@ -64,10 +71,10 @@ public class MyLinkedList{
 	LNode c = head;
 	while (c != null){
 	    x += c;
-	    c = c.next;
 	    if (c != tail){
 		x+= ",";
 	    }
+	    c = c.next;
 	}	    
 	return x + "]";
     }
@@ -75,6 +82,22 @@ public class MyLinkedList{
 	LNode x = new LNode(value);
 	addAfter(tail,x);
 	return true;
+    }
+    public int get(int index){
+	return getNthNode(index).value;
+    }
+    public int set(int index, int v){
+	int x = getNthNode(index).value;
+	getNthNode(index).value = v;
+	return x;
+    }
+    public int indexOf(int v){
+	for (int i = 0; i < size;i++){
+	    if (getNthNode(i).value == v){
+		return i;
+	    }
+	}
+	return -1;
     }
     /*
     public boolean add(int value){
@@ -143,7 +166,13 @@ public class MyLinkedList{
     }
     public static void main(String[]a){
 	MyLinkedList x = new MyLinkedList();
-	x.add(1);
+	x.add(10);
+	x.add(169);
+	x.add(196);
+	System.out.println(x.set(2,999));
+	System.out.println(x.get(1));
+	System.out.println(x.indexOf(999));
+	System.out.println(x.indexOf(0));
 	System.out.println(x);
 	/*
 	x.add(67);
