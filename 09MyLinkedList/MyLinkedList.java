@@ -84,9 +84,15 @@ public class MyLinkedList{
 	return true;
     }
     public int get(int index){
+	if (index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
 	return getNthNode(index).value;
     }
     public int set(int index, int v){
+	if (index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
 	int x = getNthNode(index).value;
 	getNthNode(index).value = v;
 	return x;
@@ -99,6 +105,22 @@ public class MyLinkedList{
 	}
 	return -1;
     }
+    public int remove(int index){
+	if (index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
+	int x = getNthNode(index).value;
+        remove(getNthNode(index));
+	return x;
+    }
+    public void add(int i, int v){
+	if (i < 0 || i > size){
+	    throw new IndexOutOfBoundsException();
+	}
+	LNode x = new LNode(v);
+	addAfter(getNthNode(i), x);
+    }
+	
     /*
     public boolean add(int value){
  	size++;
@@ -169,10 +191,12 @@ public class MyLinkedList{
 	x.add(10);
 	x.add(169);
 	x.add(196);
-	System.out.println(x.set(2,999));
+	System.out.println(x.set(0,999));
 	System.out.println(x.get(1));
 	System.out.println(x.indexOf(999));
 	System.out.println(x.indexOf(0));
+	System.out.println(x.remove(2));
+	x.add(1,55);
 	System.out.println(x);
 	/*
 	x.add(67);
