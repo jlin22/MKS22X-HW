@@ -1,9 +1,35 @@
 import java.util.*;
-public class MyLinkedList{
+public class MyLinkedList implements Iterable<Integer>{
     private LNode head,tail;
     private int size;
     public MyLinkedList(){
 	size = 0;
+    }
+    public Iterator<Integer> iterator(){
+        MyIterator x = new MyIterator(this);
+	return x;
+    }
+    public class MyIterator implements Iterator<Integer>{
+	MyLinkedList l;
+	int c;;
+	public MyIterator(MyLinkedList list){
+	    l = list;
+	    c = 0;
+	}
+	public boolean hasNext(){
+	    if (c < l.size()){
+		return true;
+	    }
+	    return false;
+	}
+	public Integer next(){
+	    Integer x = new Integer(l.get(c));
+	    c++;
+	    return x;	    
+	}
+	public void remove(){
+	    l.remove(c);
+	}
     }
     public int size(){
 	return size;
@@ -187,17 +213,19 @@ public class MyLinkedList{
 	}
     }
     public static void main(String[]a){
-	MyLinkedList x = new MyLinkedList();
+	/*MyLinkedList x = new MyLinkedList();
 	x.add(10);
 	x.add(169);
 	x.add(196);
-	System.out.println(x.set(0,999));
+	/*System.out.println(x.set(0,999));
 	System.out.println(x.get(1));
 	System.out.println(x.indexOf(999));
 	System.out.println(x.indexOf(0));
 	System.out.println(x.remove(2));
-	x.add(1,55);
-	System.out.println(x);
+	x.add(1,55);*/
+	/*for(Integer y: x){
+	    System.out.println(y);
+	}/*
 	/*
 	x.add(67);
 	System.out.println(x.set(1,99));
