@@ -1,5 +1,5 @@
 import java.util.*;
-public class PostFix{
+public class StackCalc{
     public static double eval(String x){
 	String[] tokens = x.split(x);
 	Stack<Double> values = new Stack<Double>();
