@@ -1,59 +1,66 @@
-import java.util.io.*;
+import java.util.*;
 public class MyHeap{
-    private ArrayList<String> ary;
+    private String[] ary;
     private int size;
     private boolean min;
     public MyHeap(){
-	ary = new ArrayList<String>();
-	ary.add("");
+	ary = new String[1];
+	ary[0] = "h";
 	size = 0;
     }
     public MyHeap(boolean h){
 	if (h){
-	    ary = new ArrayList<String>();
-	    ary.add("");
+	    ary = new String[1];
+	    ary[0]="h";
 	    size = 0;
 	    min = false;
 	}
 	else{
-	    ary = new ArrayList<String>();
-	    ary.add("");
+	    ary = new String[1];
+	    ary[0] = "h";
 	    size = 0;
 	    min = true;;
 	}
     }
     public void add(String s){
-	ary.add(s);
+        String[]x=new String[2*(size+1)];
+	for (int y = 0; y < size+1; y++){
+	    x[y]=ary[y];
+	}
+	ary=x;
+	ary[size+1]=s;
 	size++;
 	int i = size;
-	if (min){
-	    while (ary[i]<ary[i/2] && i != 1){
-		pushUp(i);
-		i = i/2;
+	if (size > 1){
+	    if (min){
+		while (ary[i].compareTo(ary[i/2])<0 && i > 1){
+		    pushUp(i);
+		    i = i/2;
+		}
 	    }
+	    else{
+		while(ary[i].compareTo( ary[i/2])>0 && i> 1){
+		    pushUp(i);
+		    i = i/2;
+		}
+	    }		
 	}
-	else{
-	    while(ary[i] > ary[i/2] && i!= 1){
-		pushup(i);
-		i = i/2;
-	    }
-	}		
     }
     public String remove(){
 	String x = ary[1];
 	String y = ary[size];
 	ary[1] = ary[size];
 	size--;
-	i = 1;
+	int i = 1;
 	while (i <= size/2){
 	    if (min){
-		if (ary[i] > ary[2i] && ary[i] > ary[2i+1]){
+		if (ary[i].compareTo(ary[2*i])>0 && ary[i].compareTo(ary[2*i+1])>0){
 		    pushDown(i);
-		    if (ary[2i] = y){
-			i = 2i;
+		    if (ary[2*i] == y){
+			i = 2*i;
 		    }
 		    else{
-			i = 2i+1;
+			i = 2*i+1;
 		    }
 		}
 		else{
@@ -61,13 +68,13 @@ public class MyHeap{
 		}
 	    }
 	    else{
-		if (ary[i] <ary[2i] && ary[i] < ary[2i+1]){
+		if (ary[i].compareTo(ary[2*i])<0 && ary[i].compareTo(ary[2*i+1])<0){
 		    pushDown(i);
-		    if (ary[2i] = y){
-			i = 2i;
+		    if (ary[2*i] == y){
+			i = 2*i;
 		    }
 		    else{
-			i = 2i+1;
+			i = 2*i+1;
 		    }
 		}
 		else{
@@ -78,39 +85,54 @@ public class MyHeap{
 	return x;
     }
     public String peek(){
-	return ary.get(size);
+	return ary[size];
     }
     private void pushUp(int x){
-	int temp = ary[x/2];
+	String temp = ary[x/2];
 	ary[x/2] = ary[x];
 	ary[x] = temp;
     }
     private void pushDown(int x){
-	int temp = ary[x];
-	int a = ary[2x];
-	int b = ary[2x+1];
+	String temp = ary[x];
+	String a = ary[2*x];
+	String b = ary[2*x+1];
 	if (min){
 	    //5,3,4
-	    if (a <= b){
+	    if (a.compareTo(b)<=0){
 		ary[x] = a;
-		ary[2x] = temp;
+		ary[2*x] = temp;
 	    }
 	    else{
 		ary[x] = b;
-		ary[2x+1] = temp;
+		ary[2*x+1] = temp;
 	    }
 	}	
 	else{
 	    //3,7,5
-	    if (a >= b){
+	    if (a.compareTo(b)>=0){
 		ary[x] = a;
-		ary[2x] = temp;
+		ary[2*x] = temp;
 	    }
 	    else{
 		ary[x] = b;
-		ary[2x+1] = temp;
+		ary[2*x+1] = temp;
 	    }
 	}
+    }
+    public String toString(){
+	String a = "[";
+	for (int i = 1; i < size+1; i++){
+	    a+= ary[i] + ",";
+	}
+	return a+"]";
+    }
+    public static void main(String[]a){
+	MyHeap h = new MyHeap(false);
+	h.add("haha");
+	h.add("xd");
+	h.add("a");
+	h.remove();
+	System.out.println(h);
     }
     
     
