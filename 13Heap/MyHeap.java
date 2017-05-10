@@ -54,7 +54,7 @@ public class MyHeap{
 	int i = 1;
 	while (i <= size/2){
 	    if (min){
-		if (ary[i].compareTo(ary[2*i])>0 && ary[i].compareTo(ary[2*i+1])>0){
+		if (ary[i].compareTo(ary[2*i])>=0 && ary[i].compareTo(ary[2*i+1])>=0){
 		    pushDown(i);
 		    if (ary[2*i] == y){
 			i = 2*i;
@@ -68,7 +68,7 @@ public class MyHeap{
 		}
 	    }
 	    else{
-		if (ary[i].compareTo(ary[2*i])<0 && ary[i].compareTo(ary[2*i+1])<0){
+		if (ary[i].compareTo(ary[2*i])<=0 && ary[i].compareTo(ary[2*i+1])<=0){
 		    pushDown(i);
 		    if (ary[2*i] == y){
 			i = 2*i;
@@ -85,7 +85,7 @@ public class MyHeap{
 	return x;
     }
     public String peek(){
-	return ary[size];
+	return ary[1];
     }
     private void pushUp(int x){
 	String temp = ary[x/2];
@@ -126,14 +126,14 @@ public class MyHeap{
 	}
 	return a+"]";
     }
-    public static void main(String[]a){
+    /*public static void main(String[]a){
 	MyHeap h = new MyHeap(false);
 	h.add("haha");
 	h.add("xd");
 	h.add("a");
 	h.remove();
 	System.out.println(h);
-    }
+    }*/
     
     
 }
