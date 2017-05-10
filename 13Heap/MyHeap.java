@@ -7,6 +7,7 @@ public class MyHeap{
 	ary = new String[1];
 	ary[0] = "h";
 	size = 0;
+	min=false;
     }
     public MyHeap(boolean h){
 	if (h){
