@@ -24,6 +24,12 @@ public class Location implements Comparable<Location>{
 	    aStar = false;
 	}
     }
+    public int getRow(){
+	return row;
+    }
+    public int getCol(){
+	return col;
+    }
     public int getDTS(){
 	return dts;
     }

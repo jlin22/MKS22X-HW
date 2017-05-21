@@ -1,11 +1,13 @@
 public class FrontierPriorityQueue implements Frontier{
+    private MyHeap heap;
+    private int size;
     public class MyHeap{
 	private Location[] ary;
 	private int size;
 	private boolean min;
 	public MyHeap(boolean h){
-	    ary = new int[1];
-	    ary[0] = 0;
+	    ary = new Location[1];
+	    ary[0] = new Location(0,0,null,0,0);
 	    size = 0;
 	    if (h){
 		min = false;
@@ -14,7 +16,7 @@ public class FrontierPriorityQueue implements Frontier{
 		min = true;
 	    }
 	}
-	public void add(Location x){
+	public void add(Location s){
 	    Location[]x = new Location[2*(size+1)];
 	    for(int y = 0; y<size+1;y++){
 		x[y]=ary[y];
@@ -37,6 +39,9 @@ public class FrontierPriorityQueue implements Frontier{
 		    }
 		}
 	    }
+	}
+	public int size(){
+	    return size;
 	}
 	public Location remove(){
 	    Location x = ary[1];
@@ -107,10 +112,25 @@ public class FrontierPriorityQueue implements Frontier{
 	    }
 	}
     }
+    public FrontierPriorityQueue(){
+	heap = new MyHeap(false);
+	size = heap.size();
+    }	
     public int size(){
+	return heap.size();
     }
     public void add(Location x){
+	heap.add(x);
     }
     public Location next(){
+	return heap.remove();
+    }
+    public static void main(String[]a){
+	FrontierPriorityQueue x = new FrontierPriorityQueue();
+	x.add(new Location(0,0,null,5,7,true));
+	x.add(new Location(0,1,null,0,13,true));
+	x.add(new Location(0,5,null,4,6,true));
+	System.out.println(x.size());
+	System.out.println(x.next().getDTS());
     }
 }
