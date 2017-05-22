@@ -9,7 +9,7 @@ public class QueueFrontier implements Frontier{
 	
     }
     public Location next(){
-	return front.removeLast();
+	return front.remove();
     }
     public int size(){
 	return front.size();
