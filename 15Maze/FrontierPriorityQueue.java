@@ -125,12 +125,12 @@ public class FrontierPriorityQueue implements Frontier{
     public Location next(){
 	return heap.remove();
     }
-    public static void main(String[]a){
+    /*public static void main(String[]a){
 	FrontierPriorityQueue x = new FrontierPriorityQueue();
 	x.add(new Location(0,0,null,5,7,true));
 	x.add(new Location(0,1,null,0,13,true));
 	x.add(new Location(0,5,null,4,6,true));
 	System.out.println(x.size());
 	System.out.println(x.next().getDTS());
-    }
+	}*/
 }
