@@ -41,7 +41,7 @@ public class MazeSolver{
 		}
 		m.set(s.getRow(),s.getCol(),'S');
 		m.set(e.getRow(),e.getCol(),'E');
-		System.out.println(toString());
+        
 		return;
 	    }
 	    m.set(l.getRow(),l.getCol(),'.');
@@ -61,15 +61,19 @@ public class MazeSolver{
 		a.add(new Location(l.getRow(),l.getCol()-1,l,Math.abs(l.getRow()-s.getRow())+Math.abs(l.getCol()-1-s.getCol()),Math.abs(l.getRow()-e.getRow())+Math.abs(l.getCol()-1-e.getCol()),b));
 		m.set(l.getRow(),l.getCol()-1,'?');
 	    }
-	    System.out.println(toString());
+	 
 	}			     					  
     }
     public String toString(){
 	return m.toString();
     }
-    /* public static void main(String[]a){
+    public String toString(int n){
+	return m.toString(n);
+    }
+    /*public static void main(String[]a){
 	MazeSolver x = new MazeSolver("data1.dat");
 	x.solve(1);
+	System.out.println(x);
     }*/
     
 }
